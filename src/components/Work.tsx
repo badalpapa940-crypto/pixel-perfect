@@ -46,8 +46,8 @@ const projects = [
   {
     title: 'Edibles Candy — Brand Story',
     category: 'AI UGC / Brand Film',
-    image:
-      'https://images.pexels.com/photos/3776947/pexels-photo-3776947.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: ediblesPoster.url,
+    video: ediblesVideo.url,
     span: 'lg:col-span-7',
     aspect: 'aspect-[4/3]',
   },
