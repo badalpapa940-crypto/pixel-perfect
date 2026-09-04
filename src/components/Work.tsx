@@ -33,6 +33,22 @@ const projects = [
     span: 'lg:col-span-7',
     aspect: 'aspect-[4/3]',
   },
+  {
+    title: 'Trueve App — Social Media',
+    category: 'AI Influencer / Consistent Characters',
+    image:
+      'https://images.pexels.com/photos/7148620/pexels-photo-7148620.jpeg?auto=compress&cs=tinysrgb&w=1000',
+    span: 'lg:col-span-5',
+    aspect: 'aspect-[3/4]',
+  },
+  {
+    title: 'Edibles Candy — Brand Story',
+    category: 'AI UGC / Brand Film',
+    image:
+      'https://images.pexels.com/photos/3776947/pexels-photo-3776947.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    span: 'lg:col-span-7',
+    aspect: 'aspect-[4/3]',
+  },
 ];
 
 export function Work() {
@@ -64,16 +80,29 @@ export function Work() {
             >
               <figure className="group cursor-pointer">
                 <div className={`relative overflow-hidden rounded-2xl ${p.aspect}`}>
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover opacity-0 transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
-                    onLoad={(e) => {
-                      (e.currentTarget as HTMLImageElement).classList.remove('opacity-0');
-                    }}
-                  />
+                  {'video' in p && (p as { video?: string }).video ? (
+                    <video
+                      src={(p as { video?: string }).video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label={p.title}
+                      className="h-full w-full object-cover transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover opacity-0 transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
+                      onLoad={(e) => {
+                        (e.currentTarget as HTMLImageElement).classList.remove('opacity-0');
+                      }}
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
                 <figcaption className="mt-4 flex items-center justify-between">
