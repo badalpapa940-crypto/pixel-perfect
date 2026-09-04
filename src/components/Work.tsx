@@ -33,6 +33,22 @@ const projects = [
     span: 'lg:col-span-7',
     aspect: 'aspect-[4/3]',
   },
+  {
+    title: 'Trueve App — Social Media',
+    category: 'AI Influencer / Consistent Characters',
+    image:
+      'https://images.pexels.com/photos/7148620/pexels-photo-7148620.jpeg?auto=compress&cs=tinysrgb&w=1000',
+    span: 'lg:col-span-5',
+    aspect: 'aspect-[3/4]',
+  },
+  {
+    title: 'Edibles Candy — Brand Story',
+    category: 'AI UGC / Brand Film',
+    image:
+      'https://images.pexels.com/photos/3776947/pexels-photo-3776947.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    span: 'lg:col-span-7',
+    aspect: 'aspect-[4/3]',
+  },
 ];
 
 export function Work() {
