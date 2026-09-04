@@ -1,4 +1,6 @@
 import { Reveal } from '@/components/Reveal';
+import ediblesVideo from '@/assets/edibles-ugc.mp4.asset.json';
+import ediblesPoster from '@/assets/edibles-poster.jpg.asset.json';
 
 const projects = [
   {
