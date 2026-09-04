@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
-const heroImage =
-  'https://images.pexels.com/photos/8015461/pexels-photo-8015461.jpeg?auto=compress&cs=tinysrgb&w=1600';
+import introVideo from '@/assets/intro.mp4.asset.json';
+
 
 export function Hero() {
   const [email, setEmail] = useState('');
