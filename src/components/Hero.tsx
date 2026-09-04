@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
-const heroImage =
-  'https://images.pexels.com/photos/8015461/pexels-photo-8015461.jpeg?auto=compress&cs=tinysrgb&w=1600';
+import introVideo from '@/assets/intro.mp4.asset.json';
+
 
 export function Hero() {
   const [email, setEmail] = useState('');
@@ -89,9 +89,29 @@ export function Hero() {
             </form>
           )}
         </div>
+
+        {/* Intro video — mobile / tablet */}
+        <div
+          className="mt-12 overflow-hidden rounded-[1.5rem] lg:hidden"
+          style={{
+            animation: 'fadeInUp 700ms cubic-bezier(0.22,1,0.36,1) 300ms forwards',
+            opacity: 0,
+          }}
+        >
+          <video
+            src={introVideo.url}
+            className="aspect-[16/10] h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="The Cloud Co. intro film"
+          />
+        </div>
       </div>
 
-      {/* Hero visual — eager loaded */}
+      {/* Intro video — desktop */}
       <div
         className="absolute -right-20 top-1/2 hidden h-[80vh] w-[45vw] -translate-y-1/2 overflow-hidden rounded-[2rem] lg:block"
         style={{
@@ -99,13 +119,18 @@ export function Hero() {
           opacity: 0,
         }}
       >
-        <img
-          src={heroImage}
-          alt="Minimalist product photography"
+        <video
+          src={introVideo.url}
           className="h-full w-full object-cover"
-          decoding="async"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label="The Cloud Co. intro film"
         />
       </div>
+
 
       {/* Bottom gradient fade */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-paper to-transparent dark:from-paper-dark" />
