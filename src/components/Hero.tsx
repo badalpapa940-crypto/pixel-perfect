@@ -89,7 +89,6 @@ export function Hero() {
             </form>
           )}
         </div>
-      </div>
 
         {/* Intro video — mobile / tablet */}
         <div
