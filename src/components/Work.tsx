@@ -90,6 +90,7 @@ export function Work() {
                       loop
                       playsInline
                       preload="metadata"
+                      poster={p.image}
                       aria-label={p.title}
                       className="h-full w-full object-cover transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
                     />
