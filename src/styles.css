@@ -142,3 +142,100 @@
     color: var(--color-foreground);
   }
 }
+
+/* ============================================================
+ * The Cloud Co. — editorial design system tokens
+ * ============================================================ */
+@theme {
+  --color-paper: #f4f3f0;
+  --color-paper-dark: #121210;
+  --color-surface: #ffffff;
+  --color-surface-dark: #191916;
+  --color-ink: #111110;
+  --color-ink-dark: #f4f3f0;
+  --color-ink-soft: #6e6c66;
+  --color-ink-soft-dark: #b3b0a8;
+  --color-ink-faint: #9b9890;
+  --color-ink-faint-dark: #77746c;
+  --color-hairline: #e4e2dc;
+  --color-hairline-dark: #2c2b27;
+  --color-accent: #9c6b2e;
+  --color-accent-dark: #d6a45c;
+
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-body: "Instrument Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --tracking-tightest: -0.02em;
+  --tracking-widest2: 0.18em;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv01";
+  }
+
+  .dark body {
+    background-color: var(--color-paper-dark);
+    color: var(--color-ink-dark);
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .dark ::selection {
+    background-color: var(--color-ink-dark);
+    color: var(--color-paper-dark);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility underline-grow {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 250ms var(--ease-editorial);
+
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
