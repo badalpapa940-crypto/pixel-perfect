@@ -1,4 +1,6 @@
 import { Reveal } from '@/components/Reveal';
+import ediblesVideo from '@/assets/edibles-ugc.mp4.asset.json';
+import ediblesPoster from '@/assets/edibles-poster.jpg.asset.json';
 
 const projects = [
   {
@@ -44,8 +46,8 @@ const projects = [
   {
     title: 'Edibles Candy — Brand Story',
     category: 'AI UGC / Brand Film',
-    image:
-      'https://images.pexels.com/photos/3776947/pexels-photo-3776947.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: ediblesPoster.url,
+    video: ediblesVideo.url,
     span: 'lg:col-span-7',
     aspect: 'aspect-[4/3]',
   },
@@ -88,6 +90,7 @@ export function Work() {
                       loop
                       playsInline
                       preload="metadata"
+                      poster={p.image}
                       aria-label={p.title}
                       className="h-full w-full object-cover transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
                     />
