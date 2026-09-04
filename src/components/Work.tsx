@@ -1,57 +1,6 @@
+import { Link } from '@tanstack/react-router';
 import { Reveal } from '@/components/Reveal';
-import ediblesVideo from '@/assets/edibles-ugc.mp4.asset.json';
-import ediblesPoster from '@/assets/edibles-poster.jpg.asset.json';
-
-const projects = [
-  {
-    title: 'Aether — Skincare Campaign',
-    category: 'AI Visuals',
-    image:
-      'https://images.pexels.com/photos/8015777/pexels-photo-8015777.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    span: 'lg:col-span-7',
-    aspect: 'aspect-[4/3]',
-  },
-  {
-    title: 'Form Studio — 3D Renders',
-    category: '3D Shoot',
-    image:
-      'https://images.pexels.com/photos/29636880/pexels-photo-29636880.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    span: 'lg:col-span-5',
-    aspect: 'aspect-[3/4]',
-  },
-  {
-    title: 'Nuit — Fragrance Editorial',
-    category: 'Product Photoshoot',
-    image:
-      'https://images.pexels.com/photos/18848964/pexels-photo-18848964.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    span: 'lg:col-span-5',
-    aspect: 'aspect-[3/4]',
-  },
-  {
-    title: 'Onyx — Beverage Commercial',
-    category: 'Commercial Ad Shoot',
-    image:
-      'https://images.pexels.com/photos/36698524/pexels-photo-36698524.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    span: 'lg:col-span-7',
-    aspect: 'aspect-[4/3]',
-  },
-  {
-    title: 'Trueve App — Social Media',
-    category: 'AI Influencer / Consistent Characters',
-    image:
-      'https://images.pexels.com/photos/7148620/pexels-photo-7148620.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    span: 'lg:col-span-5',
-    aspect: 'aspect-[3/4]',
-  },
-  {
-    title: 'Edibles Candy — Brand Story',
-    category: 'AI UGC / Brand Film',
-    image: ediblesPoster.url,
-    video: ediblesVideo.url,
-    span: 'lg:col-span-7',
-    aspect: 'aspect-[4/3]',
-  },
-];
+import { projects } from '@/lib/projects';
 
 export function Work() {
   return (
@@ -73,52 +22,48 @@ export function Work() {
         </Reveal>
 
         <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-12">
-          {projects.map((p, i) => (
-            <Reveal
-              key={p.title}
-              delay={i * 80}
-              distance={24}
-              className={p.span}
-            >
+          {projects.map((p, i) => {
+            const card = (
               <figure className="group cursor-pointer">
                 <div className={`relative overflow-hidden rounded-2xl ${p.aspect}`}>
-                  {'video' in p && (p as { video?: string }).video ? (
-                    <video
-                      src={(p as { video?: string }).video}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      poster={p.image}
-                      aria-label={p.title}
-                      className="h-full w-full object-cover transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
-                    />
-                  ) : (
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover opacity-0 transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
-                      onLoad={(e) => {
-                        (e.currentTarget as HTMLImageElement).classList.remove('opacity-0');
-                      }}
-                    />
-                  )}
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover opacity-0 transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
+                    onLoad={(e) => {
+                      (e.currentTarget as HTMLImageElement).classList.remove('opacity-0');
+                    }}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  {p.slug && (
+                    <span className="absolute bottom-4 left-4 rounded-full bg-paper/90 px-4 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink dark:bg-paper-dark/90 dark:text-ink-dark">
+                      Watch film
+                    </span>
+                  )}
                 </div>
                 <figcaption className="mt-4 flex items-center justify-between">
-                  <h3 className="font-display text-lg font-bold tracking-tightest">
-                    {p.title}
-                  </h3>
+                  <h3 className="font-display text-lg font-bold tracking-tightest">{p.title}</h3>
                   <span className="font-mono text-xs uppercase tracking-widest2 text-ink-faint dark:text-ink-faint-dark">
                     {p.category}
                   </span>
                 </figcaption>
               </figure>
-            </Reveal>
-          ))}
+            );
+
+            return (
+              <Reveal key={p.title} delay={i * 80} distance={24} className={p.span}>
+                {p.slug ? (
+                  <Link to="/work/$slug" params={{ slug: p.slug }} className="block">
+                    {card}
+                  </Link>
+                ) : (
+                  card
+                )}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
