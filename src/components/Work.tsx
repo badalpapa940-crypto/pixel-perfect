@@ -80,16 +80,29 @@ export function Work() {
             >
               <figure className="group cursor-pointer">
                 <div className={`relative overflow-hidden rounded-2xl ${p.aspect}`}>
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover opacity-0 transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
-                    onLoad={(e) => {
-                      (e.currentTarget as HTMLImageElement).classList.remove('opacity-0');
-                    }}
-                  />
+                  {'video' in p && (p as { video?: string }).video ? (
+                    <video
+                      src={(p as { video?: string }).video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label={p.title}
+                      className="h-full w-full object-cover transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover opacity-0 transition-all duration-500 ease-editorial group-hover:scale-[1.03]"
+                      onLoad={(e) => {
+                        (e.currentTarget as HTMLImageElement).classList.remove('opacity-0');
+                      }}
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
                 <figcaption className="mt-4 flex items-center justify-between">
