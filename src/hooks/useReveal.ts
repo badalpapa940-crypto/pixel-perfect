@@ -18,10 +18,11 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           setVisible(true);
           observer.unobserve(entry.target);
         }
+
       },
       { threshold: 0.2, ...options }
     );
